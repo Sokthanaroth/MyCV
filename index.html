@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EL SOKTHANAROTH | Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --secondary: #D3FBD8;
+            --accent-start: #8A2BE2;
+            --accent-end: #00FFFF;
+            --text-light: #F8FAFC;
+            --text-dark: #0F172A;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary), #1E293B);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Glass Morphism Effect */
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+        }
+
+        /* Header/Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-3d {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--secondary);
+        }
+
+        .profile-3d:hover {
+            transform: rotateY(15deg) scale(1.05);
+        }
+
+        .profile-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .typing-animation {
+            border-right: 3px solid var(--secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 1.5rem;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--secondary) }
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--glass-bg);
+            transform: translateY(-5px) scale(1.1);
+            color: var(--secondary);
+        }
+
+        /* Floating Navigation */
+        .floating-nav {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+
+        .floating-nav ul {
+            display: flex;
+            gap: 1rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .floating-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .floating-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--secondary);
+        }
+
+        /* Content Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .bio-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .highlight-card {
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .highlight-card p {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Enhanced Work Experience Styles */
+        .timeline {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 25px;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-start), var(--accent-end));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: -55px;
+            top: 0;
+            width: 110px;
+            padding: 0.5rem;
+            text-align: right;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+            margin-left: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+        }
+
+        .job-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(211, 251, 216, 0.2);
+        }
+
+        .job-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            color: var(--secondary);
+        }
+
+        .job-header h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+
+        .job-duration {
+            background: rgba(211, 251, 216, 0.1);
+            color: var(--secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .job-responsibilities {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .job-responsibilities li {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .job-responsibilities i {
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .education-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .education-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .date {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Skills Cloud */
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            background: var(--glass-bg);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+        }
+
+        /* Projects Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-media {
+            height: 200px;
+            background: var(--glass-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 3rem;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+            background: var(--glass-bg);
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            margin-bottom: 1.5rem;
+        }
+
+        .neon-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neon-button:hover {
+            color: var(--primary);
+            background: var(--secondary);
+            box-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary);
+        }
+
+        /* References Section */
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .reference-card {
+            padding: 1.5rem;
+        }
+
+        .reference-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .reference-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-flex {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 2;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-method icon {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-group input:focus + label,
+        .form-group textarea:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.8rem;
+            background: var(--primary);
+            padding: 0 0.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .bio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bio-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-flex {
+                flex-direction: column;
+            }
+            
+            .floating-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .text-gradient {
+                font-size: 2.5rem;
+            }
+
+            .timeline {
+                padding-left: 40px;
+            }
+
+            .timeline-date {
+                left: -40px;
+                width: 80px;
+                font-size: 0.9rem;
+            }
+
+            .timeline-content {
+                margin-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="glass-panel">
+        <div class="profile-container">
+            <div class="profile-3d">
+                <img src="IMG_9522.JPG" alt="EL SOKTHANAROTH">
+            </div>
+            <h1 class="text-gradient">EL SOKTHANAROTH</h1>
+            <p class="typing-animation">Web Developer | Computer Science Engineer</p>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://github.com/Sokthanaroth" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:sokthanarothel@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+85587853239"><i class="fas fa-phone"></i></a>
+        </div>
+    </header>
+    
+    <nav class="floating-nav">
+        <ul>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+            <li><a href="#experience" class="nav-link">Experience</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#references" class="nav-link">References</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="about" class="content-panel">
+        <h2>About Me</h2>
+        <div class="bio-grid">
+            <div class="bio-text">
+                <p>I am a third-year Computer Science Engineering student at ACLEDA University of Business, holding a Bachelor's degree in Economics and Finance. I am developing a strong foundation in technology and problem-solving.</p>
+                <p>With experience as a credit officer, specializing in credit loan promotion, disbursement, and recovery, I am flexible, honest, reliable, disciplined, self-motivated, and hard-working. I seek a dynamic work environment that offers challenges and opportunities for personal and professional development.</p>
+            </div>
+            <div class="bio-highlights">
+                <div class="highlight-card glass-panel">
+                    <h3>Education</h3>
+                    <p>2 Degrees</p>
+                </div>
+                <div class="highlight-card glass-panel">
+                    <h3>Work Experience</h3>
+                    <p>5+ Years</p>
+                </div>
+                <div class="highlight-card glass-panel">
+                    <h3>Technical Skills</h3>
+                    <p>15+</p>
+                </div>
+                <div class="highlight-card glass-panel">
+                    <h3>Projects</h3>
+                    <p>4+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="education" class="content-panel">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="education-card glass-panel">
+                <h3>ACLEDA University Of Business</h3>
+                <h4>Bachelor of Computer Science and Engineering</h4>
+                <p class="date">2023-Present : Year 3</p>
+            </div>
+            <div class="education-card glass-panel">
+                <h3>Build Bright University</h3>
+                <h4>Bachelor of Economic and Finance</h4>
+                <p class="date">2016-2020</p>
+            </div>
+            <div class="education-card glass-panel">
+                <h3>Chea Sim Takeo High School</h3>
+                <h4>General Education</h4>
+                <p class="date">2010-2016</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience" class="content-panel">
+        <h2>Work Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2022-Present</div>
+                <div class="timeline-content glass-panel">
+                    <div class="job-header">
+                        <h3>Credit Officer</h3>
+                        <h4>Acleda Bank Plc</h4>
+                        <div class="job-duration">Full-time</div>
+                    </div>
+                    <ul class="job-responsibilities">
+                        <li><i class="fas fa-check-circle"></i> Maintain up-to-date knowledge of credit policies and procedures</li>
+                        <li><i class="fas fa-check-circle"></i> Manage complete loan processing cycle including promotion, disbursement, and recovery</li>
+                        <li><i class="fas fa-check-circle"></i> Analyze client financial data to determine creditworthiness</li>
+                        <li><i class="fas fa-check-circle"></i> Maintain portfolio of 150+ active loan accounts</li>
+                        <li><i class="fas fa-check-circle"></i> Achieved 95% on-time repayment rate through effective client relationships</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2017-2022</div>
+                <div class="timeline-content glass-panel">
+                    <div class="job-header">
+                        <h3>Customer Service Assistant</h3>
+                        <h4>Acleda Bank Plc</h4>
+                        <div class="job-duration">Full-time</div>
+                    </div>
+                    <ul class="job-responsibilities">
+                        <li><i class="fas fa-check-circle"></i> Provided frontline customer service to 100+ daily clients</li>
+                        <li><i class="fas fa-check-circle"></i> Managed customer flow and parking coordination</li>
+                        <li><i class="fas fa-check-circle"></i> Assisted with account inquiries and basic transactions</li>
+                        <li><i class="fas fa-check-circle"></i> Recognized as Employee of the Month 3 times for exceptional service</li>
+                        <li><i class="fas fa-check-circle"></i> Trained 5 new staff members in customer service protocols</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills" class="content-panel">
+        <h2>Skills</h2>
+        <div class="skills-cloud">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">Bootstrap</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">jQuery</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">SQL Server</span>
+            <span class="skill-tag">C#.Net</span>
+            <span class="skill-tag">Windows Forms</span>
+            <span class="skill-tag">React JS</span>
+            <span class="skill-tag">UX/UI Design</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Kotlin</span>
+            <span class="skill-tag">C/C++</span>
+            <span class="skill-tag">Adobe Photoshop</span>
+            <span class="skill-tag">Microsoft Office</span>
+            <span class="skill-tag">Computer Hardware</span>
+            <span class="skill-tag">Computer Software</span>
+            <span class="skill-tag">Cisco (CCNA)</span>
+            <span class="skill-tag">Windows Server</span>
+            <span class="skill-tag">Networking</span>
+            <span class="skill-tag">Teamwork</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Problem-solving</span>
+            <span class="skill-tag">Time Management</span>
+            <span class="skill-tag">Responsibility</span>
+        </div>
+    </section>
+    
+    <section id="projects" class="content-panel">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-media">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="project-info">
+                    <h3>ACLEDA INSTITUTE OF BUSINESS</h3>
+                    <p>Individual project built with HTML, CSS, JavaScript and frameworks like Bootstrap and jQuery.</p>
+                    <a href="https://github.com/Sokthanaroth" class="neon-button">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-media">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="project-info">
+                    <h3>E-Invitation With Check Attendant</h3>
+                    <p>Group assignment with front-end built using HTML, CSS, JavaScript, Bootstrap, jQuery and back-end using PHP with MySQL database.</p>
+                    <a href="https://github.com/Sokthanaroth" class="neon-button">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-media">
+                    <i class="fas fa-hotel"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Hotel Management System</h3>
+                    <p>Group assignment with front-end built using HTML, CSS, JavaScript, Bootstrap, jQuery and back-end using Django framework with MySQL database.</p>
+                    <a href="https://github.com/Sokthanaroth" class="neon-button">View on GitHub</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-media">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Google API Integration</h3>
+                    <p>Mobile application with front-end built using XML for UI and Java for logic, featuring user authentication via Google and displaying user data.</p>
+                    <a href="https://github.com/Sokthanaroth" class="neon-button">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="references" class="content-panel">
+        <h2>References</h2>
+        <div class="references-grid">
+            <div class="reference-card glass-panel">
+                <h3>Mr. Reach Makara</h3>
+                <p>Manager of Academic Computing Unit</p>
+                <p>Acleda University Of Business</p>
+                <p>Email: makarareach@acledaaib.onmicrosoft.com</p>
+                <p>Phone: +855 15 400 242 / +855 98 540 663</p>
+            </div>
+            <div class="reference-card glass-panel">
+                <h3>Mr. Chhay Phinavuth</h3>
+                <p>Dean of Faculty of Science and Technology</p>
+                <p>Acleda University Of Business</p>
+                <p>Email: chhayphinavuth@acledaaib.onmicrosoft.com</p>
+                <p>Phone: +855 15 500 412</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="content-panel">
+        <h2>Contact</h2>
+        <div class="contact-flex">
+            <div class="contact-info">
+                <div class="contact-method">
+                    <icon>📧</icon>
+                    <span>sokthanarothel@gmail.com</span>
+                </div>
+                <div class="contact-method">
+                    <icon>📱</icon>
+                    <span>+855 87 853 239</span>
+                </div>
+        
+                <div class="contact-method">
+                    <icon>📍</icon>
+                    <span>Borey IC, St6, #B70, Sambuor, Dangkao, Phnom Penh</span>
+                </div>
+                <div class="contact-method">
+                    <icon>🌐</icon>
+                    <span>Khmer (Native), English (Good)</span>
+                </div>
+            </div>
+            <form class="contact-form glass-panel">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder=" ">
+                    <label for="name">Your Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder=" ">
+                    <label for="email">Email Address</label>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" rows="4" placeholder=" "></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="neon-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Simple animations and interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.timeline-item, .project-card, .highlight-card, .education-card').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Dynamic background effect for header
+            const header = document.querySelector('header');
+            window.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                header.style.setProperty('--mouse-x', x);
+                header.style.setProperty('--mouse-y', y);
+            });
+        });
+    </script>
+</body>
+</html>
